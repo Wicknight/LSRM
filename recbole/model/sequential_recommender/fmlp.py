@@ -5,9 +5,9 @@ from recbole.model.layers_fmlp import Encoder, LayerNorm
 from recbole.model.loss import BPRLoss
 
 
-class FMLPRecModel(SequentialRecommender):
+class FMLP(SequentialRecommender):
     def __init__(self, config, dataset):
-        super(FMLPRecModel, self).__init__(config, dataset)
+        super(FMLP, self).__init__(config, dataset)
         config["max_seq_length"] = self.max_seq_length
         self.item_embeddings = nn.Embedding(self.n_items, config["hidden_size"], padding_idx=0)
         self.position_embeddings = nn.Embedding(self.max_seq_length, config["hidden_size"])

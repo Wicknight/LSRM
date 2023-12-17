@@ -7,7 +7,6 @@ import copy
 
 from typing import Optional, Tuple, Union, List
 from recbole.model.abstract_recommender import SequentialRecommender
-from recbole.model.layers import TransformerEncoder, MoEEmbedExperts, VanillaAttention, SparseDispatcher
 from recbole.model.loss import BPRLoss
 
 from transformers.configuration_utils import PretrainedConfig
