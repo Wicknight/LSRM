@@ -567,7 +567,7 @@ class LSRM(SequentialRecommender):
         for i in range(10):
             hr[i+1] = 0.0
         pred_tgt_data = []
-        for (src_sample, tgt_sample) in zip(src_data, tgt_data)
+        for (src_sample, tgt_sample) in zip(src_data, tgt_data):
             seq_len = len(src_sample)
             sample_data = copy.deepcopy(src_sample)
             sample = torch.LongTensor(np.array(sample_data))
