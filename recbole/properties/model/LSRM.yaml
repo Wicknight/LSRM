@@ -1,0 +1,17 @@
+model_type: 'GPT'
+num_beats: 1
+is_decoder: True
+n_layers: 48                     # (int) The number of transformer layers in transformer encoder.
+n_heads: 24                      # (int) The number of attention heads for multi-head attention layer.
+hidden_size: 1200                 # (int) The number of features in the hidden state.
+inner_size: 4800                 # (int) The inner hidden size in feed-forward layer.
+attn_pdrop_start: 0.1        # (float) The probability of an element to be zeroed.
+attn_pdrop_end: 0.2
+embed_pdrop: 0.5          # (float) The probability of an attention score to be zeroed.
+resid_pdrop_start: 0.1
+resid_pdrop_end: 0.2
+hidden_act: 'gelu'              # (str) The activation function in feed-forward layer.
+layer_norm_eps: 1e-12           # (float) A value added to the denominator for numerical stability. 
+initializer_range: 0.02         # (float) The standard deviation for normal initialization.
+loss_type: 'CE'                 # (str) The type of loss function. Range in ['BPR', 'CE'].
+weight_decay: 1e-8

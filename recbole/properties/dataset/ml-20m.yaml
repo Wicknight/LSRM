@@ -1,0 +1,61 @@
+# dataset config
+field_separator: "\t"
+seq_separator: " "
+USER_ID_FIELD: user_id
+ITEM_ID_FIELD: item_id
+RATING_FIELD: rating
+TIME_FIELD: timestamp
+NEG_PREFIX: neg_
+ITEM_LIST_LENGTH_FIELD: item_length
+LIST_SUFFIX: _list
+MAX_ITEM_LIST_LENGTH: 50
+POSITION_FIELD: position_id
+benchmark_filename: ['train', 'valid', 'test']
+load_col:
+    inter: [user_id, item_id, item_id_list]
+
+save_dataset: True             # (bool) Whether or not to save filtered dataset.
+dataset_save_path: saved/ml-20m-dataset.pth #'/home/zhanggaowei/moe/dataset/Books'
+
+# data filtering for interactions
+# val_interval:
+#    rating: "[3,inf)"    
+# unused_col: 
+#    inter: [rating]
+
+#user_inter_num_interval: "[5,inf)"
+#item_inter_num_interval: "[5,inf)"
+
+# training and evaluation
+epochs: 30
+stopping_step: 10
+train_batch_size: 256
+eval_batch_size: 1024
+eval_args:
+    split: {'LS': 'valid_and_test'}
+    mode: full
+    order: TO
+
+metrics: ["Recall", "MRR", "NDCG", "ItemCoverage", "AveragePopularity"]
+topk: [1,5,10,50]
+valid_metric: NDCG@10
+
+learning_rate: 6e-5
+recommendation_task: 'overall' #, 'cold', 'domain', 'robust', 'trajectory', 'overall', 'trajectory'
+cold_file_list: ['dataset/ml-20m/ml-20m.cold_test_50.csv', 'dataset/ml-20m/ml-20m.cold_test_40.csv', 'dataset/ml-20m/ml-20m.cold_test_30.csv',\
+                    'dataset/ml-20m/ml-20m.cold_test_20.csv', 'dataset/ml-20m/ml-20m.cold_test_10.csv', 'dataset/ml-20m/ml-20m.cold_test_5.csv']
+domain_file_list: []
+trajectory_file: ['dataset/ml-20m/ml-20m.trajectory.inter']
+
+robustness_eta: 0.3
+transform: 'noise_seq'
+
+data_scaling: False
+sparse_eta: 0.1
+#transform: 'sparse_seq'
+
+# disable negative sampling
+train_neg_sample_args: ~
+
+# model
+gpu_id: '0,1'
